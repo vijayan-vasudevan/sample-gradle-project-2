@@ -39,4 +39,24 @@ public class Employee {
     public String toString() {
         return "Employee{firstName='" + firstName + "', lastName='" + lastName + "', age=" + age + '}';
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (age != employee.age) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + age;
+        return result;
+    }
 }
