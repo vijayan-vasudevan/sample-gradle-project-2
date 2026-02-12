@@ -23,7 +23,6 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<Employee> getEmployee(HttpServletRequest request) {
         String userAgent = request.getHeader("User-Agent");
-        userAgent.length();
         System.out.println("User-Agent: " + userAgent);
         return ResponseEntity.ok(employeeService.getEmployee());
     }
