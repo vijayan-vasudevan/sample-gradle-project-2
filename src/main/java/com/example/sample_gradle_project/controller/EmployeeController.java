@@ -13,17 +13,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+    
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping
     public ResponseEntity<Employee> getEmployee(HttpServletRequest request) {
         String userAgent = request.getHeader("User-Agent");
-        System.out.println("User-Agent: " + userAgent);
+        logger.info("User-Agent: {}", userAgent);
         return ResponseEntity.ok(employeeService.getEmployee());
     }
  
