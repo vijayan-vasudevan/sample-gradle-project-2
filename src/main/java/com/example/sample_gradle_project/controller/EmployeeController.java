@@ -23,7 +23,9 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<Employee> getEmployee(HttpServletRequest request) {
         String userAgent = request.getHeader("User-Agent");
-        System.out.println("User-Agent: " + userAgent);
+        // Using logger instead of System.out
+        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(EmployeeController.class);
+        logger.info("User-Agent: " + userAgent);
         return ResponseEntity.ok(employeeService.getEmployee());
     }
  
