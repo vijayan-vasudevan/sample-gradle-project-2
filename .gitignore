@@ -5,6 +5,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 tmp/
+report-task.txt
+.sonar_lock
+renovate-report.json
 
 .gitattributes
 
