@@ -4,6 +4,7 @@ import com.example.sample_gradle_project.dto.Employee;
 import com.example.sample_gradle_project.service.EmployeeService;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,12 @@ import jakarta.servlet.http.HttpServletRequest;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    private final Logger logger = Logger.getLogger(EmployeeController.class.getName());
 
     @GetMapping
     public ResponseEntity<Employee> getEmployee(HttpServletRequest request) {
         String userAgent = request.getHeader("User-Agent");
-        System.out.println("User-Agent: " + userAgent);
+        logger.info("User-Agent: " + userAgent);
         return ResponseEntity.ok(employeeService.getEmployee());
     }
  
