@@ -13,11 +13,11 @@ public class EmployeeRepositoryVulnerable {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    // Vulnerable: user input 'name' concatenated directly into SQL
+    // Fixed: using PreparedStatement with parameterized query to prevent SQL injection
     public List<Employee> findByFirstName(String firstName) {
-        String sql = "SELECT first_name, last_name, age FROM employee WHERE first_name = '" + firstName + "'";
+        String sql = "SELECT first_name, last_name, age FROM employee WHERE first_name = ?";
 
-        return jdbcTemplate.query(sql, (rs, rowNum) ->
+        return jdbcTemplate.query(sql, new Object[]{firstName}, (rs, rowNum) ->
                 new Employee(
                         rs.getString("first_name"),
                         rs.getString("last_name"),
